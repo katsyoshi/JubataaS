@@ -13,3 +13,15 @@
 [submodule "cookbooks/build-essential"]
 	path = cookbooks/build-essential
 	url = git://github.com/opscode-cookbooks/build-essential.git
+[submodule "yum"]
+	path = yum
+	url = git://github.com/opscode-cookbooks/yum.git
+[submodule "yum-epel"]
+	path = yum-epel
+	url = git://github.com/opscode-cookbooks/yum-epel.git
+[submodule "cookbooks/yum"]
+	path = cookbooks/yum
+	url = git://github.com/opscode-cookbooks/yum.git
+[submodule "cookbooks/yum-epel"]
+	path = cookbooks/yum-epel
+	url = git://github.com/opscode-cookbooks/yum-epel.git
