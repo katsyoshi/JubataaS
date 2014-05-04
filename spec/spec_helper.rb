@@ -1,5 +1,7 @@
-$.:unshift File.join(__dir__, '../lib')
+$:.unshift File.join(__dir__, '../lib')
 
 require 'sinatra'
 require 'rack/test'
 require 'rspec'
+
+require 'jubatus_core'
