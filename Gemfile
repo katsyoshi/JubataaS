@@ -8,5 +8,6 @@ group :development do
   gem 'pry'
   gem 'simplecov'
   gem 'rspec'
+  gem 'rack-test'
 end
 gem 'jubatus'
