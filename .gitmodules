@@ -19,3 +19,6 @@
 [submodule "cookbooks/yum-epel"]
 	path = cookbooks/yum-epel
 	url = git://github.com/opscode-cookbooks/yum-epel.git
+[submodule "docker-jubatus"]
+	path = docker-jubatus
+	url = git://github.com/katsyoshi/docker-jubatus.git
