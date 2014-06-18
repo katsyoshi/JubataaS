@@ -12,12 +12,15 @@ module JubatusCore
   end
 
   def clear
+    @jubatus.clear
   end
 
   def load(path)
+    @jubatus.load(path)
   end
 
   def save(path)
+    @jubatus.save(path)
   end
 
   def status
@@ -34,7 +37,7 @@ module JubatusCore
 
   def jubatus_status_update(source, &block)
     retry_num = 0
-    src = convert4jubatus(source)
+    src = convert2jubatus(source)
     begin
       yield(src)
     rescue MessagePack::RPC::TimeoutError
@@ -45,10 +48,11 @@ module JubatusCore
       end
     end
   end
+
   # convert data for jubatus
   # @param [Hash] source { types: {key0: type, key1: type}, data: [{key0: val},{key1: val}], label: {data0: label, data1: label} }
   # @return [Jubatus::Common::Datum] data_list input data for jubatus
-  def convert4jubatus(source)
+  def convert2jubatus(source)
     types = source['types']
     data = source['data']
     label = source['label'] ? source['label'] : nil
