@@ -9,5 +9,6 @@ group :development do
   gem 'simplecov'
   gem 'rspec'
   gem 'rack-test'
+  gem 'sinatra-contrib', require: 'sinatra/reloader'
 end
 gem 'jubatus'
