@@ -13,5 +13,6 @@ group :development do
   gem 'rspec'
   gem 'rack-test'
   gem 'sinatra-contrib', require: 'sinatra/reloader'
+  gem 'capistrano'
 end
 gem 'jubatus'
