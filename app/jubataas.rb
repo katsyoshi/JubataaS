@@ -21,6 +21,18 @@ class JubataaS < Sinatra::Base
     @client.clear
   end
 
+  get '/css/main.css' do
+    sass :'sass/main'
+  end
+
+  get '/js/main.js' do
+    coffee :'coffee/main'
+  end
+
+  get '/' do
+    haml :index
+  end
+
   get "/classifier/status" do
     startup_jubatus("hoge")
     status = @client.status
