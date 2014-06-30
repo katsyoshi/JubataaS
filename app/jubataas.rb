@@ -1,6 +1,7 @@
 require 'jubatus_core/classifier'
 require 'bundler'
 require 'json'
+require 'haml'
 Bundler.require
 
 class JubataaS < Sinatra::Base
