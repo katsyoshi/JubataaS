@@ -1,0 +1,17 @@
+%h1 hello Jubatus #{ENV['RACK_ENV']} world!!
+
+%label.name
+  %input#your-name
+%label.weight
+  %input#your-weight
+%label.meals
+  %input#your-meals
+%label.file
+  %input#your-photo
+
+%button{onclick: "postYourParamsLearn();"}
+  lean!!
+%button{onclick: "postYourParamsAnalyze();"}
+  analyze!!
+
+#calc-result
