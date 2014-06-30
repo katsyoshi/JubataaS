@@ -6,6 +6,14 @@ module JubatusCore
       @jubatus = Jubatus::Classifier::Client::Classifier.new(host, port, name)
     end
 
+    def result(results)
+      results.map do |result|
+        result.map do |er|
+          {score: er.score, label: er.label}
+        end
+      end
+    end
+
     private
 
     def client_analyze(source)
