@@ -1,3 +1,0 @@
-[submodule "docker-jubatus"]
-	path = docker-jubatus
-	url = git://github.com/katsyoshi/docker-jubatus.git
