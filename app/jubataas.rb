@@ -12,8 +12,6 @@ class JubataaS < Sinatra::Base
   def startup_jubatus(name)
     @client = JubatusCore::Classifier.new(name: name)
     @client.load(name)
-  rescue MessagePack::RPC::RuntimeError
-  ensure
     @client
   end
 
@@ -27,5 +25,28 @@ class JubataaS < Sinatra::Base
     status = @client.status
     shutdown_jubatus("hoge")
     status.to_json
+  end
+
+  post "/classifier", provides: :json do
+    params = JSON.parse(request.body.read)
+    begin
+      startup_jubatus("hoge")
+      c = @client.result(@client.analyze(params))
+      shutdown_jubatus("hoge")
+      c.to_json
+    rescue => e
+      e
+    end
+  end
+
+  post "/classifier/update", provides: :json do
+    params = JSON.parse(request.body.read)
+    begin
+      startup_jubatus("hoge")
+      @client.update(params)
+      shutdown_jubatus("hoge")
+    rescue => e
+      e
+    end
   end
 end
