@@ -67,7 +67,7 @@ module JubatusCore
         end
       end
       jd = Jubatus::Common::Datum.new(d)
-      data_list << (label.nil? ? jd : [label[i].to_s, jd])
+      data_list << (label.nil? ? jd : [label[i.to_s].to_s, jd])
     end
     data_list
   end

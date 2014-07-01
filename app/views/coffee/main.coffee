@@ -5,8 +5,8 @@
   foto = $('#your-photo').val()
 
   updateData = {
-    types: {name: 'str', weight: 'num', meals: 'str', photo: 'str' },
-    data: [{name: name, weight: weight, meals: meals, photo: foto}],
+    types: {weight: 'num', meals: 'str', photo: 'str' },
+    data: [{weight: weight, meals: meals, photo: foto}],
     label: {0: name}
   }
 
@@ -19,14 +19,13 @@
   })
 
 @postYourParamsAnalyze = () ->
-  name = $('#your-name').val()
   weight = $('#your-weight').val()
   meals = $('#your-meals').val()
   foto = $('#your-photo').val()
 
   analyzeData = {
-    types: {name: 'str', weight: 'num', meals: 'str', photo: 'str' },
-    data: [{name: name, weight: weight, meals: meals, photo: foto}]
+    types: {weight: 'num', meals: 'str', photo: 'str' },
+    data: [{weight: weight, meals: meals, photo: foto}]
   }
 
   $.ajax({
@@ -34,9 +33,10 @@
     url: '/classifier',
     data: JSON.stringify(analyzeData),
     contentType: 'application/json',
-    dataType: 'json'
+    dataType: 'json',
     success: (json) ->
       for obj in json
+        $('#calc-result').text('')
         for result in obj
-          $('#calc-result').text("label:" + result['label'] + "score:" + result['score'])
+          $('#calc-result').append("label: " + result.label + " score: " + result.score + "<br>")
   })
