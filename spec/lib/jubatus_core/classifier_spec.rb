@@ -11,7 +11,7 @@ describe JubatusCore::Classifier do
         { 'string' => 'hoge', 'number' => 0 },
         { 'string' => 'foo', 'number' => 1}
       ],
-      'label' => { 0 => 'hoge', 1 => 'foo' }
+      'label' => { '0' => 'hoge', '1' => 'foo' }
     }
   }
 
