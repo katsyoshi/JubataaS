@@ -4,10 +4,7 @@
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{deploy@example.com}
-role :web, %w{deploy@example.com}
-role :db,  %w{deploy@example.com}
-
+role :app, %w{katsu@katsyoshi.org}
 
 # Extended Server Syntax
 # ======================
@@ -15,8 +12,18 @@ role :db,  %w{deploy@example.com}
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+server 'katsyoshi.org', user: 'katsu', roles: %w{app}, my_property: :my_value
 
+set :linked_dirs, ['tmp/pids', 'log']
+set :unicorn_rack_env, 'production'
+set :unicorn_config_path, 'config/unicorn.rb'
+
+after 'deploy:publishing', 'deploy:restart'
+namespace :deploy do
+  task :restart do
+    invoke 'unicorn:restart'
+  end
+end
 
 # Custom SSH Options
 # ==================

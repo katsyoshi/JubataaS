@@ -1,5 +1,7 @@
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
+require 'capistrano/rbenv'
+require 'capistrano3/unicorn'
 
 # Includes default deployment tasks
 require 'capistrano/deploy'
