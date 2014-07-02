@@ -14,5 +14,8 @@ group :development do
   gem 'rack-test'
   gem 'sinatra-contrib', require: 'sinatra/reloader'
   gem 'capistrano'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn'
 end
 gem 'jubatus'
