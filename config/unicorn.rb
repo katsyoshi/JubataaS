@@ -4,7 +4,11 @@ worker_processes 2 # CPUのコア数に揃える
 working_directory @dir
 
 timeout 300
-listen 8080
+if ENV['RACK_ENV'] == 'development'
+  listen 8080
+else
+  listen '/var/tmp/unicorn.sock'
+end
 
 pid "#{@dir}/tmp/pids/unicorn.pid" #pidを保存するファイル
 
