@@ -7,6 +7,8 @@ gem 'sinatra'
 gem 'haml'
 gem 'sass'
 gem 'coffee-script'
+gem 'execjs'
+gem 'therubyracer'
 group :development do
   gem 'pry'
   gem 'simplecov'

@@ -32,6 +32,7 @@ GEM
     jubatus (0.5.2)
       msgpack-rpc (~> 0.5.2)
     kgio (2.9.2)
+    libv8 (3.16.14.3)
     method_source (0.8.2)
     msgpack (0.5.8)
     msgpack-rpc (0.5.2)
@@ -52,6 +53,7 @@ GEM
       rack (>= 1.0)
     raindrops (0.13.0)
     rake (10.1.0)
+    ref (1.0.5)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -82,6 +84,9 @@ GEM
       colorize
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     tilt (1.4.1)
     unicorn (4.8.2)
       kgio (~> 2.6)
@@ -97,6 +102,7 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   coffee-script
+  execjs
   haml
   jubatus
   pry
@@ -108,4 +114,5 @@ DEPENDENCIES
   simplecov
   sinatra
   sinatra-contrib
+  therubyracer
   unicorn
