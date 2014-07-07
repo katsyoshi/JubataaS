@@ -10,20 +10,6 @@ class JubataaS < Sinatra::Base
     register Sinatra::Reloader
   end
 
-  def startup_jubatus(name)
-    @client = JubatusCore::Classifier.new(name: name)
-    @client.load(name)
-  rescue MessagePack::RPC::RuntimeError => e
-    STDERR.puts(e)
-  ensure
-    @client
-  end
-
-  def shutdown_jubatus(name)
-    @client.save(name)
-    @client.clear
-  end
-
   get '/css/main.css' do
     sass :'sass/main'
   end
@@ -81,5 +67,21 @@ class JubataaS < Sinatra::Base
       STDERR.puts e
       {error: e.backtrace}.to_json
     end
+  end
+
+  private
+
+  def startup_jubatus(name)
+    @client = JubatusCore::Classifier.new(name: name)
+    @client.load(name)
+  rescue MessagePack::RPC::RuntimeError => e
+    STDERR.puts(e)
+  ensure
+    @client
+  end
+
+  def shutdown_jubatus(name)
+    @client.save(name)
+    @client.clear
   end
 end
