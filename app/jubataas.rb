@@ -53,7 +53,8 @@ class JubataaS < Sinatra::Base
       shutdown_jubatus(name)
       c.to_json
     rescue => e
-      e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
     end
   end
 
@@ -65,7 +66,8 @@ class JubataaS < Sinatra::Base
       @client.update(paramters)
       shutdown_jubatus(name)
     rescue => e
-      e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
     end
   end
 
@@ -76,7 +78,8 @@ class JubataaS < Sinatra::Base
       @client.clear
       shutdown_jubatus(name)
     rescue => e
-      e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
     end
   end
 end
