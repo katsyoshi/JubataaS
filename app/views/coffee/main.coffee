@@ -12,7 +12,7 @@
 
   $.ajax({
     type: 'post',
-    url: '/classifier/update',
+    url: '/classifier/hoge/update.json',
     data: JSON.stringify(updateData),
     contentType: 'application/json',
     dataType: 'json'
@@ -30,7 +30,7 @@
 
   $.ajax({
     type: 'post',
-    url: '/classifier',
+    url: '/classifier/hoge.json',
     data: JSON.stringify(analyzeData),
     contentType: 'application/json',
     dataType: 'json',
