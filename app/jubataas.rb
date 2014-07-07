@@ -5,24 +5,9 @@ require 'haml'
 Bundler.require
 
 class JubataaS < Sinatra::Base
-  NAME = 'hoge'
   configure :development do
     require 'sinatra/reloader'
     register Sinatra::Reloader
-  end
-
-  def startup_jubatus(name)
-    @client = JubatusCore::Classifier.new(name: name)
-    @client.load(name)
-  rescue MessagePack::RPC::RuntimeError => e
-    STDERR.puts(e)
-  ensure
-    @client
-  end
-
-  def shutdown_jubatus(name)
-    @client.save(name)
-    @client.clear
   end
 
   get '/css/main.css' do
@@ -37,33 +22,71 @@ class JubataaS < Sinatra::Base
     haml :index
   end
 
-  get "/classifier/status" do
-    startup_jubatus(NAME)
-    status = @client.status
-    shutdown_jubatus(NAME)
-    status.to_json
+  get "/classifier/:name/status.json" do
+    name = params[:name]
+    begin
+      startup_jubatus(name)
+      status = @client.status
+      shutdown_jubatus(name)
+      status.to_json
+    rescue => e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
+    end
   end
 
-  post "/classifier", provides: :json do
-    params = JSON.parse(request.body.read)
+  post "/classifier/:name.json", provides: :json do
+    paramters = JSON.parse(request.body.read)
     begin
-      startup_jubatus(NAME)
-      c = @client.result(@client.analyze(params))
-      shutdown_jubatus(NAME)
+      name = params[:name]
+      startup_jubatus(name)
+      c = @client.result(@client.analyze(paramters))
+      shutdown_jubatus(name)
       c.to_json
     rescue => e
-      e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
     end
   end
 
-  post "/classifier/update", provides: :json do
-    params = JSON.parse(request.body.read)
+  post "/classifier/:name/update.json", provides: :json do
+    paramters = JSON.parse(request.body.read)
     begin
-      startup_jubatus(NAME)
-      @client.update(params)
-      shutdown_jubatus(NAME)
+      name = params[:name]
+      startup_jubatus(name)
+      @client.update(paramters)
+      shutdown_jubatus(name)
     rescue => e
-      e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
     end
+  end
+
+  get '/classifier/:name/clear.json' do
+    begin
+      name = params[:name]
+      startup_jubatus(name)
+      @client.clear
+      shutdown_jubatus(name)
+    rescue => e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
+    end
+  end
+
+  private
+
+  def startup_jubatus(name)
+    @client = JubatusCore::Classifier.new(name: name)
+    @client.load(name)
+  rescue MessagePack::RPC::RuntimeError => e
+    STDERR.puts(e)
+  ensure
+    @client
+  end
+
+  def shutdown_jubatus(name)
+    @client.save(name)
+    @client.clear
   end
 end
