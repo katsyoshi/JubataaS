@@ -5,6 +5,7 @@ require 'haml'
 Bundler.require
 
 class JubataaS < Sinatra::Base
+  NAME = 'hoge'
   configure :development do
     require 'sinatra/reloader'
     register Sinatra::Reloader
@@ -13,6 +14,9 @@ class JubataaS < Sinatra::Base
   def startup_jubatus(name)
     @client = JubatusCore::Classifier.new(name: name)
     @client.load(name)
+  rescue MessagePack::RPC::RuntimeError => e
+    STDERR.puts(e)
+  ensure
     @client
   end
 
@@ -34,18 +38,18 @@ class JubataaS < Sinatra::Base
   end
 
   get "/classifier/status" do
-    startup_jubatus("hoge")
+    startup_jubatus(NAME)
     status = @client.status
-    shutdown_jubatus("hoge")
+    shutdown_jubatus(NAME)
     status.to_json
   end
 
   post "/classifier", provides: :json do
     params = JSON.parse(request.body.read)
     begin
-      startup_jubatus("hoge")
+      startup_jubatus(NAME)
       c = @client.result(@client.analyze(params))
-      shutdown_jubatus("hoge")
+      shutdown_jubatus(NAME)
       c.to_json
     rescue => e
       e
@@ -55,9 +59,9 @@ class JubataaS < Sinatra::Base
   post "/classifier/update", provides: :json do
     params = JSON.parse(request.body.read)
     begin
-      startup_jubatus("hoge")
+      startup_jubatus(NAME)
       @client.update(params)
-      shutdown_jubatus("hoge")
+      shutdown_jubatus(NAME)
     rescue => e
       e
     end
