@@ -5,7 +5,6 @@ require 'haml'
 Bundler.require
 
 class JubataaS < Sinatra::Base
-  NAME = 'hoge'
   configure :development do
     require 'sinatra/reloader'
     register Sinatra::Reloader
@@ -37,31 +36,45 @@ class JubataaS < Sinatra::Base
     haml :index
   end
 
-  get "/classifier/status" do
-    startup_jubatus(NAME)
+  get "/classifier/:name/status.json" do
+    name = params[:name]
+    startup_jubatus(name)
     status = @client.status
-    shutdown_jubatus(NAME)
+    shutdown_jubatus(name)
     status.to_json
   end
 
-  post "/classifier", provides: :json do
-    params = JSON.parse(request.body.read)
+  post "/classifier/:name.json", provides: :json do
+    paramters = JSON.parse(request.body.read)
     begin
-      startup_jubatus(NAME)
-      c = @client.result(@client.analyze(params))
-      shutdown_jubatus(NAME)
+      name = params[:name]
+      startup_jubatus(name)
+      c = @client.result(@client.analyze(paramters))
+      shutdown_jubatus(name)
       c.to_json
     rescue => e
       e
     end
   end
 
-  post "/classifier/update", provides: :json do
-    params = JSON.parse(request.body.read)
+  post "/classifier/:name/update.json", provides: :json do
+    paramters = JSON.parse(request.body.read)
     begin
-      startup_jubatus(NAME)
-      @client.update(params)
-      shutdown_jubatus(NAME)
+      name = params[:name]
+      startup_jubatus(name)
+      @client.update(paramters)
+      shutdown_jubatus(name)
+    rescue => e
+      e
+    end
+  end
+
+  get '/classifier/:name/clear.json' do
+    begin
+      name = params[:name]
+      startup_jubatus(name)
+      @client.clear
+      shutdown_jubatus(name)
     rescue => e
       e
     end
