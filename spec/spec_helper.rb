@@ -1,4 +1,5 @@
 $:.unshift File.join(__dir__, '../lib')
+$:.unshift File.join(__dir__, '../app')
 
 require 'sinatra'
 require 'rack/test'
@@ -6,7 +7,10 @@ require 'rspec'
 
 require 'jubatus_core'
 require 'jubatus_core/classifier'
+require 'jubataas'
+
 RSpec.configure do |config|
+  config.include Rack::Test::Methods
   config.before do
     jubatus = Jubatus::Classifier::Client::Classifier.new '127.0.0.1', 9199, ''
     retry_num = 0

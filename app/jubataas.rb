@@ -24,10 +24,15 @@ class JubataaS < Sinatra::Base
 
   get "/classifier/:name/status.json" do
     name = params[:name]
-    startup_jubatus(name)
-    status = @client.status
-    shutdown_jubatus(name)
-    status.to_json
+    begin
+      startup_jubatus(name)
+      status = @client.status
+      shutdown_jubatus(name)
+      status.to_json
+    rescue => e
+      STDERR.puts e
+      {error: e.backtrace}.to_json
+    end
   end
 
   post "/classifier/:name.json", provides: :json do
