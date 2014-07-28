@@ -42,13 +42,16 @@ set :rbenv_ruby, '2.1.2'
 
 namespace :deploy do
 
-  desc 'Restart application'
-  task :restart do
+  desc 'Stop Unicorn'
+  task :stop do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      execute :pkill, '-f', 'unicorn'
     end
   end
+
+  task :restart, :stop, :start
 
   after :publishing, :restart
 
