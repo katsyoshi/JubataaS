@@ -62,3 +62,20 @@ namespace :deploy do
   end
 
 end
+
+namespace :jubatus do
+  desc 'start jubatus'
+  task :start do
+    on roles(:app), in: :sequence, wait: 5 do
+      set :ld_library_path, '/opt/jubatus/lib'
+      execute "LD_LIBRARY_PATH=#{fetch(:ld_library_path)} /opt/jubatus/bin/jubaclassifier -f ${HOME}/config/jubatus/classifier_config.json -b 127.0.0.1 -p 9199 -l ${HOME}/jubatus/logs -D 1>&2> /dev/null &"
+    end
+  end
+
+  desc 'stop jubatus'
+  task :stop do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :pkill, 'jubaclassifier'
+    end
+  end
+end
