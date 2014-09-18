@@ -21,3 +21,4 @@ group :development do
   gem 'capistrano3-unicorn'
 end
 gem 'jubatus'
+gem 'foreman'
