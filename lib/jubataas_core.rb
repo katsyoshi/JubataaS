@@ -1,4 +1,4 @@
-module JubatusCore
+module JubataasCore
   def update(source)
     jubatus_status_update(source) do |src|
       client_update(src)

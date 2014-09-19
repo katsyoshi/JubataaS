@@ -1,7 +1,7 @@
 require 'jubatus/classifier/client'
-module JubatusCore
+module JubataasCore
   class Classifier
-    include JubatusCore
+    include JubataasCore
     def initialize(host: '127.0.0.1', port: 9199, name: '')
       @jubatus = Jubatus::Classifier::Client::Classifier.new(host, port, name)
     end
