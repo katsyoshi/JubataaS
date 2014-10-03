@@ -58,16 +58,15 @@ module JubatusCore
     label = source['label'] ? source['label'] : nil
     data_list = []
     data.each_with_index do |datum, i|
-      d = {}
+      d = Jubatus::Common::Datum.new
       datum.each do |key, val|
-        d[key] = case types[key].to_s
-          when /num/i then val.to_f
-          when /str/i then val.to_s
-          when /bin/i then Base64.decode64(val)
+        case types[key].to_s
+        when /num/i then d.add_number(key, val.to_f)
+        when /str/i then d.add_string(key, val.to_s)
+        when /bin/i then d.add_binary(key, Base64.decode64(val))
         end
       end
-      jd = Jubatus::Common::Datum.new(d)
-      data_list << (label.nil? ? jd : [label[i.to_s].to_s, jd])
+      data_list << (label.nil? ? d : [label[i.to_s].to_s, d])
     end
     data_list
   end
