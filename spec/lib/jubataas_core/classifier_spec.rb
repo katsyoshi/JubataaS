@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe JubatusCore::Classifier do
+describe JubataasCore::Classifier do
   let(:save_file) { 'jubatus' }
-  let(:jubatus) { JubatusCore::Classifier.new(name: 'hoge') }
+  let(:jubatus) { JubataasCore::Classifier.new(name: 'hoge') }
 
   let(:data) {
     {

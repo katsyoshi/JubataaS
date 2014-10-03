@@ -5,8 +5,8 @@ require 'sinatra'
 require 'rack/test'
 require 'rspec'
 
-require 'jubatus_core'
-require 'jubatus_core/classifier'
+require 'jubataas_core'
+require 'jubataas_core/classifier'
 require 'jubataas'
 
 RSpec.configure do |config|

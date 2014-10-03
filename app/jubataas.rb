@@ -1,4 +1,4 @@
-require 'jubatus_core/classifier'
+require 'jubataas_core/classifier'
 require 'bundler'
 require 'json'
 require 'haml'
@@ -77,7 +77,7 @@ class JubataaS < Sinatra::Base
   private
 
   def startup_jubatus(name)
-    @client = JubatusCore::Classifier.new(name: name)
+    @client = JubataasCore::Classifier.new(name: name)
     @client.load(name)
   rescue MessagePack::RPC::RuntimeError => e
     STDERR.puts(e)

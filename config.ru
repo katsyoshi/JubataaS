@@ -3,6 +3,6 @@ $:.unshift __dir__ + '/app'
 $:.unshift __dir__ + '/lib'
 
 require 'jubataas'
-require 'jubatus_core'
+require 'jubataas_core'
 
 run JubataaS
