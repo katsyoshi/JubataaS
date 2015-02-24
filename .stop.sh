@@ -1,4 +1,4 @@
 #!/bin/sh
-
-kill -9 `pwd`/classifier.pid
+DIR=`pwd`
+kill -9 ${DIR}/classifier.pid
 
