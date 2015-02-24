@@ -1,5 +1,14 @@
 language: ruby
 rvm:
   - 2.2.0
-before_install: sh ./.start.sh
-after: sh ./.stop.sh
+before_script:
+  - wget 'https://katsyoshi.org/download/jubatus-0.7.0.tar.xz'
+  - export DIR=`pwd`
+  - tar xJf jubatus-0.7.0.tar.xz
+  - sed -i 's?=$?='${DIR}'?' ${DIR}/jubatus/share/jubatus/jubatus.profile
+  - source ${DIR}/jubatus/share/jubatus/jubatus.profile
+  - jubaclassifier -f ${JUBATUS_HOME}/share/jubatus/example/config/classifier/arow.json &
+  - /sbin/pidof jubaclassifier > ${DIR}/classifier.pid
+after_script:
+  - export DIR=`pwd`
+  - kill -9 ${DIR}/classifier.pid
