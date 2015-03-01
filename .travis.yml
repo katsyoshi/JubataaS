@@ -2,9 +2,10 @@ language: ruby
 rvm:
   - 2.2.0
 before_script:
-  - wget 'https://katsyoshi.org/download/jubatus-0.7.0.tar.xz'
-  - tar xJf jubatus-0.7.0.tar.xz
-  - export JUBATUS_HOME=${PWD}/jubatus
+  - export PACKAGE="jubatus_0.7.0-1_amd64.deb"
+  - wget "http://download.jubat.us/apt/binary/pool/#{PACKAGE}"
+  - sudo dpkg -i jubatus_0.7.0-1_amd64.deb
+  - export JUBATUS_HOME=/opt/jubatus
   - export PATH=${JUBATUS_HOME}/bin:${PATH}
   - echo ${PATH}
   - export CPLUS_INCLUDE_PATH=${JUBATUS_HOME}/include:${CPLUS_INCLUDE_APTH}
@@ -13,7 +14,6 @@ before_script:
   - export DYLD_LIBRARY_PATH=${JUBATUS_HOME}/lib:${DYLD_LIBRARY_PATH}
   - export PKG_CONFIG_PATH=${JUBATUS_HOME}/lib/pkg-config:${PKG_CONFIG_PATH}
   - jubaclassifier -f ${JUBATUS_HOME}/share/jubatus/example/config/classifier/arow.json &
-  - ldd jubaclassfier
   - pgrep jubaclassifier > ${PWD}/classifier.pid
 after_script:
   - export DIR=`pwd`
