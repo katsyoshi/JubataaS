@@ -7,10 +7,10 @@ before_script:
   - sudo apt-get install -y --force-yes
   - export JUBATUS_HOME=/opt/jubatus
   - export PATH=${JUBATUS_HOME}/bin:${PATH}
-  - echo ${PATH}
   - export CPLUS_INCLUDE_PATH=${JUBATUS_HOME}/include:${CPLUS_INCLUDE_APTH}
   - export LD_FLAGS=${JUBATUS_HOME}/lib:${LD_FLAGS}
   - export LD_LIBRARY_PATH=${JUBATUS_HOME}/lib:${LD_LIBRARY_PATH}
   - export DYLD_LIBRARY_PATH=${JUBATUS_HOME}/lib:${DYLD_LIBRARY_PATH}
   - export PKG_CONFIG_PATH=${JUBATUS_HOME}/lib/pkg-config:${PKG_CONFIG_PATH}
+  - ls /opt/jubatus
   - jubaclassifier -f ${JUBATUS_HOME}/share/jubatus/example/config/classifier/arow.json &
