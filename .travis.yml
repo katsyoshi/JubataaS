@@ -3,14 +3,17 @@ rvm:
   - 2.2.0
 before_script:
   - wget 'https://katsyoshi.org/download/jubatus-0.7.0.tar.xz'
-  - export DIR=`pwd`
   - tar xJf jubatus-0.7.0.tar.xz
-  - sed -i 's?=$?='${DIR}'/jubatus?' ${DIR}/jubatus/share/jubatus/jubatus.profile
-  - sh ${DIR}/jubatus/share/jubatus/jubatus.profile
-  - cat ${DIR}/jubatus/share/jubatus/jubatus.profile
+  - export JUBATUS_HOME=${PWD}/jubatus
+  - export PATH=${JUBATUS_HOME}/bin:${PATH}
   - echo ${PATH}
+  - export CPLUS_INCLUDE_PATH=${JUBATUS_HOME}/include:${CPLUS_INCLUDE_APTH}
+  - export LD_FLAGS=${JUBATUS_HOME}/lib:${LD_FLAGS}
+  - export LD_LIBRARY_PATH=${JUBATUS_HOME}/lib:${LD_LIBRARY_PATH}
+  - export DYLD_LIBRARY_PATH=${JUBATUS_HOME}/lib:${DYLD_LIBRARY_PATH}
+  - export PKG_CONFIG_PATH=${JUBATUS_HOME}/lib/pkg-config:${PKG_CONFIG_PATH}
   - jubaclassifier -f ${JUBATUS_HOME}/share/jubatus/example/config/classifier/arow.json &
-  - /sbin/pidof jubaclassifier > ${DIR}/classifier.pid
+  - pgrep jubaclassifier > ${DIR}/classifier.pid
 after_script:
   - export DIR=`pwd`
   - kill -9 ${DIR}/classifier.pid
