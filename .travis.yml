@@ -7,6 +7,7 @@ before_script:
   - tar xJf jubatus-0.7.0.tar.xz
   - sed -i 's?=$?='${DIR}'?' ${DIR}/jubatus/share/jubatus/jubatus.profile
   - sh ${DIR}/jubatus/share/jubatus/jubatus.profile
+  - cat ${DIR}/jubatus/share/jubatus/jubatus.profile
   - echo ${PATH}
   - jubaclassifier -f ${JUBATUS_HOME}/share/jubatus/example/config/classifier/arow.json &
   - /sbin/pidof jubaclassifier > ${DIR}/classifier.pid
