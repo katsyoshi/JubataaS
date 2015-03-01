@@ -2,8 +2,9 @@ language: ruby
 rvm:
   - 2.2.0
 before_script:
-  - wget http://download.jubat.us/apt/binary/pool/jubatus_0.7.0-1_amd64.deb
-  - sudo dpkg -i jubatus_0.7.0-1_amd64.deb
+  - echo "deb http://download.jubat.us/apt binary/" | sudo tee -a /etc/apt/sources.list
+  - sudo apt-get update -qq
+  - sudo apt-get install -y --force-yes
   - export JUBATUS_HOME=/opt/jubatus
   - export PATH=${JUBATUS_HOME}/bin:${PATH}
   - echo ${PATH}
