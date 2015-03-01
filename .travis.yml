@@ -5,7 +5,7 @@ before_script:
   - wget 'https://katsyoshi.org/download/jubatus-0.7.0.tar.xz'
   - export DIR=`pwd`
   - tar xJf jubatus-0.7.0.tar.xz
-  - sed -i 's?=$?='${DIR}'?' ${DIR}/jubatus/share/jubatus/jubatus.profile
+  - sed -i 's?=$?='${DIR}'/jubatus?' ${DIR}/jubatus/share/jubatus/jubatus.profile
   - sh ${DIR}/jubatus/share/jubatus/jubatus.profile
   - cat ${DIR}/jubatus/share/jubatus/jubatus.profile
   - echo ${PATH}
