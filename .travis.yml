@@ -13,6 +13,7 @@ before_script:
   - export DYLD_LIBRARY_PATH=${JUBATUS_HOME}/lib:${DYLD_LIBRARY_PATH}
   - export PKG_CONFIG_PATH=${JUBATUS_HOME}/lib/pkg-config:${PKG_CONFIG_PATH}
   - jubaclassifier -f ${JUBATUS_HOME}/share/jubatus/example/config/classifier/arow.json &
+  - ldd jubaclassfier
   - pgrep jubaclassifier > ${PWD}/classifier.pid
 after_script:
   - export DIR=`pwd`
