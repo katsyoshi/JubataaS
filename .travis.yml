@@ -1,0 +1,22 @@
+language: ruby
+rvm: 2.2.1
+
+global:
+  - JUBATUS_HOME=${PWD}/jubatus
+  - PATH=${JUBATUS_HOME}/bin:${PATH}
+  - CPLUS_INCLUDE_PATH=${JUBATUS_HOME}/include
+  - LD_FLAGS=-L${JUBATUS_HOME}/lib
+  - LD_LIBRARY_PATH=${JUBATUS_HOME}/lib
+  - DYLD_LIBRARY_PATH=${JUBATUS_HOME}/lib
+  - PKG_CONFIG_PATH=${JUBATUS_HOME}/lib
+
+install:
+  - wget https://katsyoshi.org/download/jubatus-0.7.0.tar.xz
+  - tar xJf jubatus-0.7.0.tar.xz
+  - bundle install --path .bundle/gems
+
+cache:
+  directories:
+    - jubatus
+    - .bundle/gems
+
