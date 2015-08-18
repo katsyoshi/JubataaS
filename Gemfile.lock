@@ -23,7 +23,7 @@ GEM
     cool.io (1.2.4)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    execjs (2.5.2)
+    execjs (2.6.0)
     foreman (0.78.0)
       thor (~> 0.19.1)
     haml (4.0.7)
