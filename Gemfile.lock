@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    backports (3.6.6)
+    backports (3.6.7)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -33,7 +33,7 @@ GEM
     jubatus (0.8.0)
       msgpack-rpc (~> 0.5.1)
     kgio (2.10.0)
-    libv8 (3.16.14.11)
+    libv8 (3.16.14.13)
     method_source (0.8.2)
     msgpack (0.5.12)
     msgpack-rpc (0.5.3)
@@ -43,7 +43,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (3.0.1)
-    pry (0.10.2)
+    pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
@@ -95,7 +95,7 @@ GEM
       ref
     thor (0.19.1)
     tilt (2.0.1)
-    unicorn (4.9.0)
+    unicorn (5.0.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
