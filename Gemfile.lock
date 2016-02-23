@@ -68,7 +68,7 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     sass (3.4.21)
-    simplecov (0.11.1)
+    simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
