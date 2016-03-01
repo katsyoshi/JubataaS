@@ -51,7 +51,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    raindrops (0.15.0)
+    raindrops (0.16.0)
     rake (10.5.0)
     ref (2.0.0)
     rspec (3.4.0)
